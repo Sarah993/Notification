@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notification</title>
+</head>
+<body>
+<a href="#" id="dnperm"> Requisted permission </a>
+<a href="#" id="dntrigger"> Trigger </a>
+<script>
+	var dnperm= document.getElementById('dnperm');
+  var dntrigger= document.getElementById('dntrigger');
+
+  dnperm.addEventListener('click',function (e) {
+    e.preventDefault();
+    if(!window.Notification){
+      alert("sory,Notification not supported.")
+    } else{
+      Notification.requestPermission(function(p){
+        if(p==='denied'){
+          console.log('1......',p)
+          alert('you have denied notifications')
+          p='granted'
+        } if(p==='granted')
+        alert('you have granted notifications')
+        console.log('2......',p)
+        
+      })
+    }
+  })
+
+  // sarah you can ignore this file (notification.html) am just trying some thing here 
+</script>
+
+</body>
+
+</html>
+
