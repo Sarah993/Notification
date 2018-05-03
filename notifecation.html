@@ -19,14 +19,28 @@
         if(p==='denied'){
           console.log('1......',p)
           alert('you have denied notifications')
-          p='granted'
-        } if(p==='granted')
-        alert('you have granted notifications')
+        } else if(p==='granted'){
+          alert('you have granted notifications')
         console.log('2......',p)
-        
+         }
       })
-    }
-  })
+       }
+        })
+        //
+        dntrigger.addEventListener('click',function(e){
+          var notify;
+          e.preventDefault();
+
+          if(Notification.permission === 'ga'){
+            alert('please allow your notifcations')
+          } else{
+            notify = new Notification('new massege from hanan')
+          }
+        })
+        
+     
+   
+  
 
   // sarah you can ignore this file (notification.html) am just trying some thing here 
 </script>
