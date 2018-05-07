@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
 	<title>Notification</title>
@@ -6,6 +6,8 @@
 <body>
 <a href="#" id="dnperm"> Requisted permission </a>
 <a href="#" id="dntrigger"> Trigger </a>
+<!-- <button onclick="notifyMe()">Notify me!</button> -->
+
 <script>
 	var dnperm= document.getElementById('dnperm');
   var dntrigger= document.getElementById('dntrigger');
@@ -29,16 +31,63 @@
         //
         dntrigger.addEventListener('click',function(e){
           var notify;
+          // console.log("event",e)
           e.preventDefault();
+          if(Notification.permission === 'default'){
+              // alert('please allow your notifcations')
+              Notification.requestPermission(function (permission) {
+                console.log('1',permission)
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        console.log('hhhhh')
+        var notification = new Notification("Hi there!",{
+          body: "hi"
+        });
+         console.log('2',permission)
+      }
+    });
+          } 
+          // else{
+            
+            // console.log("Notification.permission",Notification.permission)
+            // notify = new Notification('new massege from hanan',{
+            //   body: "hi",
+            //   icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL4T3mP7R5utqlNz6ZArDagjg-9F0It0DG1REv0tWgSTxPEypz"
 
-          if(Notification.permission === 'ga'){
-            alert('please allow your notifcations')
-          } else{
-            notify = new Notification('new massege from hanan')
-          }
+            // })
+
+            // console.log(notify)
+          // }
         })
         
-     
+     document.addEventListener('DOMContentLoaded', function () {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+});
+
+// function notifyMe() {
+//   if (Notification.permission !== "granted"){
+//     Notification.requestPermission();
+  
+//   console.log('1',Notification.permission)
+//   }else {
+//     var notification = new Notification('Notification title', {
+//       icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+//       body: "Hey there! You've been notified!",
+//     });
+
+//     notification.onclick = function () {
+//       window.open("http://stackoverflow.com/a/13328397/1269037");      
+//     };
+
+//   }
+
+// }
    
   
 
