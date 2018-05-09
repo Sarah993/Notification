@@ -1,32 +1,100 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
 	<title>Notification</title>
 </head>
 <body>
-<a href="#" id="dnperm"> Requisted permission </a>
-<a href="#" id="dntrigger"> Trigger </a>
-<script>
-	var dnperm= document.getElementById('dnperm');
-  var dntrigger= document.getElementById('dntrigger');
+<!-- <a href="#" id="dnperm"> Requisted permission </a> -->
+<!-- <a href="#" id="dntrigger"> Trigger </a> -->
+<button onclick="notifyMe()">Notify me!</button>
 
-  dnperm.addEventListener('click',function (e) {
-    e.preventDefault();
-    if(!window.Notification){
-      alert("sory,Notification not supported.")
-    } else{
-      Notification.requestPermission(function(p){
-        if(p==='denied'){
-          console.log('1......',p)
-          alert('you have denied notifications')
-          p='granted'
-        } if(p==='granted')
-        alert('you have granted notifications')
-        console.log('2......',p)
+<script type="text/javascript">
+	// var dnperm= document.getElementById('dnperm');
+ //  var dntrigger= document.getElementById('dntrigger');
+
+ //  dnperm.addEventListener('click',function (e) {
+ //    e.preventDefault();
+ //    if(!window.Notification){
+ //      alert("sory,Notification not supported.")
+ //    } else{
+ //      Notification.requestPermission(function(p){
+ //        if(p==='denied'){
+ //          console.log('1......',p)
+ //          alert('you have denied notifications')
+ //        } else if(p==='granted'){
+ //          alert('you have granted notifications')
+ //        console.log('2......',p)
+ //         }
+ //      })
+ //       }
+ //        })
+ //        //
+ //        dntrigger.addEventListener('click',function(e){
+ //          var notify;
+ //          // console.log("event",e)
+ //          e.preventDefault();
+ //          if(Notification.permission === 'default'){
+ //              // alert('please allow your notifcations')
+ //              Notification.requestPermission(function (permission) {
+ //                console.log('1',permission)
+ //      // If the user accepts, let's create a notification
+ //      if (permission === "granted") {
+ //        console.log('hhhhh')
+ //        var notification = new Notification("Hi there!",{
+ //          body: "hi"
+ //        });
+ //         console.log('2',permission)
+ //      }
+ //    });
+ //          } 
+ //          // else{
+            
+ //            // console.log("Notification.permission",Notification.permission)
+ //            // notify = new Notification('new massege from hanan',{
+ //            //   body: "hi",
+ //            //   icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL4T3mP7R5utqlNz6ZArDagjg-9F0It0DG1REv0tWgSTxPEypz"
+
+ //            // })
+
+ //            // console.log(notify)
+ //          // }
+ //        })
         
-      })
-    }
-  })
+     document.addEventListener('DOMContentLoaded', function () {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+});
+
+function notifyMe() {
+  console.log(Notification.permission)
+  if (Notification.permission !== "granted"){
+    Notification.requestPermission().then( function x(){
+      var notification = new Notification('Notification title', {
+      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+      body: "Hey there! You've been notified!",
+    });
+    });
+  
+  }else {
+    var notification = new Notification('Notification title', {
+      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+      body: "Hey there! You've been notified!",
+    });
+
+    notification.onclick = function () {
+      window.open("http://stackoverflow.com/a/13328397/1269037");      
+    };
+
+  }
+
+}
+   
+  
 
   // sarah you can ignore this file (notification.html) am just trying some thing here 
 </script>
